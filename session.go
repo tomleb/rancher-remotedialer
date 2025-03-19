@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"runtime/debug"
 	"sort"
 	"strconv"
 	"strings"
@@ -47,6 +48,7 @@ func NewClientSession(auth ConnectAuthorizer, conn *websocket.Conn) *Session {
 }
 
 func NewClientSessionWithDialer(auth ConnectAuthorizer, conn *websocket.Conn, dialer Dialer) *Session {
+	fmt.Println("HITHERE NewClientSessionWithDialer", dialer, "\n", string(debug.Stack()))
 	return &Session{
 		clientKey: "client",
 		conn:      newWSConn(conn),
