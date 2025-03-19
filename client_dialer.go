@@ -21,10 +21,10 @@ func clientDial(ctx context.Context, dialer Dialer, conn *connection, message *m
 	if dialer == nil {
 		d := net.Dialer{}
 		netConn, err = d.DialContext(ctx, message.proto, message.address)
-		fmt.Println("HITHERE DialContext", netConn, err)
+		fmt.Println("HITHERE DialContext", message.address, netConn, err)
 	} else {
 		netConn, err = dialer(ctx, message.proto, message.address)
-		fmt.Println("HITHERE dialer", netConn, err)
+		fmt.Println("HITHERE dialer", message.address, netConn, err)
 	}
 	cancel()
 
