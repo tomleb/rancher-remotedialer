@@ -106,6 +106,7 @@ outer:
 			if len(parts) != 2 {
 				return nil, fmt.Errorf("invalid clientKey/proto: %s", network)
 			}
+			fmt.Println("HITHERE session.dialer", address, parts)
 			d := s.Dialer(parts[0])
 			return d(ctx, parts[1], address)
 		}
