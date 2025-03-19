@@ -2,6 +2,7 @@ package remotedialer
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"net"
 	"sync"
@@ -20,8 +21,10 @@ func clientDial(ctx context.Context, dialer Dialer, conn *connection, message *m
 	if dialer == nil {
 		d := net.Dialer{}
 		netConn, err = d.DialContext(ctx, message.proto, message.address)
+		fmt.Println("HITHERE DialContext", netConn, err)
 	} else {
 		netConn, err = dialer(ctx, message.proto, message.address)
+		fmt.Println("HITHERE dialer", netConn, err)
 	}
 	cancel()
 
